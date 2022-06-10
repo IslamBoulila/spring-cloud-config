@@ -1,3 +1,5 @@
+server:
+  port: 8080
 eureka:
   client:
     serviceUrl:
@@ -11,8 +13,6 @@ spring:
         uri: lb://user-server
         predicates:
         - Path=/user/**
-        filters:
-        - StripPrefix=1
       - id: payment-server
         uri: lb://payment-server
         predicates:
