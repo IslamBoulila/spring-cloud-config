@@ -1,6 +1,16 @@
-server:
-  port: 8080
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:2000/eureka
+spring:
+  application:
+    name: gateway-server 
+  cloud:
+    gateway:
+      routes:
+      - id: user-server
+        uri: lb://user-server
+        predicates:
+        - Path=/user/**
+        filters:
+        - StripPrefix=1
+      - id: payment-server
+        uri: lb://payment-server
+        predicates:
+        - Path=/payment/**
